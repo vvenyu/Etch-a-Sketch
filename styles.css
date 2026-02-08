@@ -3,23 +3,17 @@
     margin: 0;
 }
 
-.col {
-    border: 1px solid black;
-    height: 3rem;  
-    width: 3rem; 
-    display: flex;
-    flex-direction: row;
-}
-
-.row {
-    border: 1px solid red;
-    height: 3rem;
-    width: 3rem;
-}
-
 #container {
     display: flex;
     flex-direction: column;
 }
 
+.col {
+    display: flex;
+}
 
+.row {
+    min-width: 10px;
+    height: 10px;
+    border: 1px solid black
+}
