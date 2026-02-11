@@ -1,32 +1,8 @@
-//I got this:
-/*User enters a number
-Generate a column of the requested number
-Generate rows for each column
-appens the rows to the column
-appens the column to the container*/
-
-//I want this:
-/* Start with a default 16x16 square */
-
-//I need this:
-/*Remove the table when the user enters another number*/
-
-//DOM structure: 
-
-/*
-<container>
-    <column>
-        <rows></rows>
-        <rows></rows>
-        <rows></rows>
-    </column>
-</container>
-*/
-
 const container = document.querySelector('#container');
 const btn = document.querySelector('#btn');
 
 function makeGrid(number) {
+    let opacity = 0;
     //Removes last grid
     while (container.firstChild) {
         container.removeChild(container.firstChild);
@@ -42,7 +18,15 @@ function makeGrid(number) {
             column.appendChild(row);
             
             row.addEventListener('mouseover', () => {
-                row.classList.add('hover');
+
+                if (opacity < 1) {
+                    opacity += 0.1
+                };
+                    const r = randomRGB();
+                    const g = randomRGB();
+                    const b = randomRGB();
+                    const randomColor = `rgba(${r}, ${g}, ${b}, ${opacity})`;
+                row.style.backgroundColor = randomColor
             })
         };
         container.appendChild(column);
@@ -52,9 +36,16 @@ function makeGrid(number) {
 //Makes initial grid
 makeGrid(16);
 
+// Return a random number between 0 and 255
+function randomRGB() {
+    const rgb = Math.floor(Math.random() * 256);
+    return rgb;
+}
+
 btn.addEventListener('click', () => {
     let userNumber = prompt('Size of the square');
     if (userNumber < 1 || userNumber > 100) {
         console.log('no')
     } else makeGrid(userNumber);
 });
+
