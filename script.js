@@ -27,7 +27,7 @@ const container = document.querySelector('#container');
 const btn = document.querySelector('#btn');
 
 function makeGrid(number) {
-
+    //Removes last grid
     while (container.firstChild) {
         container.removeChild(container.firstChild);
     };
@@ -40,14 +40,21 @@ function makeGrid(number) {
             const row = document.createElement('div');
             row.classList.add('row');
             column.appendChild(row);
+            
+            row.addEventListener('mouseover', () => {
+                row.classList.add('hover');
+            })
         };
         container.appendChild(column);
     };
 };
 
+//Makes initial grid
 makeGrid(16);
 
 btn.addEventListener('click', () => {
     let userNumber = prompt('Size of the square');
-    makeGrid(userNumber);
+    if (userNumber < 1 || userNumber > 100) {
+        console.log('no')
+    } else makeGrid(userNumber);
 });
